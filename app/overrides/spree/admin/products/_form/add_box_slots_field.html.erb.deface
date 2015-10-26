@@ -1,0 +1,8 @@
+<!-- insert_bottom "[data-hook='admin_product_form_right']" -->
+
+<div data-hook="admin_product_box_slot">
+  <div class="form-group field" id="product_box_slot_field">
+    <%= f.label :box_slot_id %><br>
+    <%= f.select :box_slot_id, Spree::BoxSlot.all.collect { |p| [p.label, p.id] }, {include_blank: false}, class: "select2" %>
+  </div>
+</div>

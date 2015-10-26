@@ -1,0 +1,9 @@
+<%= form_for [:admin, @box], :html => { :multipart => true } do |f| %>
+  <fieldset data-hook="new_box">
+    <legend align="center"><%= Spree.t(:new_box) %></legend>
+
+      <%= render :partial => 'form', :locals => { :f => f } %>
+
+      <%= render partial: 'spree/admin/shared/new_resource_links', locals: { collection_url: admin_boxes_url(@box) } %>
+  </fieldset>
+<% end %>
