@@ -43,7 +43,7 @@ module Spree
           origin = build_location(stock_location)
           destination = build_location(order.ship_address)
 
-          boxes = retrive_boxes_from_cache(package)
+          boxes = retrieve_boxes_from_cache(package)
 
           return nil if boxes.empty?
 
@@ -72,7 +72,7 @@ module Spree
         # Divide by 100 since active_shipping rates
         # are received in cents
         def final_rate_adjustment rate
-         (rate/100.0).ceil - 0.01
+          (rate/100.0).ceil - 0.01
         end
 
         def timing(line_items)
@@ -233,7 +233,7 @@ module Spree
 
         def rates_cache_key(boxes, origin, destination)
           boxes_hash = Digest::MD5.hexdigest(boxes.map { |box| "#{box.width}_#{box.height}_#{box.length}_#{box.weight}" }.join("|"))
-          @cache_key = "#{boxes_hash}-#{carrier.name}-#{destination.country.iso}-#{fetch_best_state_from_address(destination)}-#{destination.city}-#{destination.zipcode}-#{I18n.locale}".gsub(" ", "")
+          @cache_key = "#{boxes_hash}-#{carrier.name}-#{location_cache_key(destination)}-#{I18n.locale}".gsub(" ", "")
         end
 
         def fetch_best_state_from_address address
@@ -247,7 +247,7 @@ module Spree
                                          :zip => address.zipcode)
         end
 
-        def retrieve_packages_from_cache package
+        def retrieve_boxes_from_cache package
           Rails.cache.fetch(boxes_cache_key(package)) do
             convert_package_to_simple_boxes(package)
           end
@@ -262,6 +262,10 @@ module Spree
               retrieve_rates(origin, destination, shipment_packages)
             end
           end
+        end
+
+        def location_cache_key(location)
+          "#{location.country_code}-#{location.state}-#{location.zip}"
         end
       end
     end

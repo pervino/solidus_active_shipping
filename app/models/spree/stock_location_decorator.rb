@@ -1,1 +1,1 @@
-Spree::LineItem.include Spree::ActiveShipping::StockLocationConcerns
+Spree::StockLocation.include Spree::ActiveShipping::StockLocationConcerns

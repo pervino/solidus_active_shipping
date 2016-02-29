@@ -1,9 +1,18 @@
-<%= form_for [:admin, @box], :html => { :multipart => true } do |f| %>
-  <fieldset data-hook="new_box">
-    <legend align="center"><%= Spree.t(:new_box) %></legend>
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
-      <%= render :partial => 'form', :locals => { :f => f } %>
+<% content_for :page_title do %>
+    <%= Spree.t(:new_box) %>
+<% end %>
 
-      <%= render partial: 'spree/admin/shared/new_resource_links', locals: { collection_url: admin_boxes_url(@box) } %>
-  </fieldset>
+<% content_for :page_actions do %>
+    <li>
+      <%= button_link_to Spree.t(:back_to_boxes_list), spree.admin_boxes_path, :icon => 'arrow-left' %>
+    </li>
+<% end %>
+
+<%= form_for [:admin, @box], :html => {:multipart => true} do |f| %>
+    <fieldset class="no-border-top" data-hook="new_box">
+      <%= render partial: 'form', locals: {:f => f} %>
+      <%= render partial: 'spree/admin/shared/new_resource_links', locals: {collection_url: admin_boxes_url(@box)} %>
+    </fieldset>
 <% end %>

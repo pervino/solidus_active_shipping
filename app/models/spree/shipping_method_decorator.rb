@@ -1,0 +1,1 @@
+Spree::ShippingMethod.include Spree::ActiveShipping::ShippingMethodConcerns

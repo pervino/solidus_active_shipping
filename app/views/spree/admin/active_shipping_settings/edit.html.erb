@@ -1,4 +1,4 @@
-<%= render :partial => 'spree/admin/shared/sub_menu/configuration' %>
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
   <%= Spree.t(:active_shipping_settings) %>
@@ -82,7 +82,6 @@
       </div>
 
       <%= render partial: 'spree/admin/shared/edit_resource_links', locals: { collection_url: edit_admin_active_shipping_settings_url } %>
-
     </fieldset>
   </div>
 <% end %>
