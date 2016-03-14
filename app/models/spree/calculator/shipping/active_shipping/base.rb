@@ -69,6 +69,49 @@ module Spree
           return rate
         end
 
+
+        def compute_pseudo(box_slot_data, origin_address, destination_address, contains_alcohol = false, multiplier = 1)
+
+          origin = ::ActiveShipping::Location.new(:country => origin_address[:country],
+                                                  :state => origin_address[:state],
+                                                  :city => origin_address[:city],
+                                                  :zip => origin_address[:zipcode])
+
+          destination = ::ActiveShipping::Location.new(:country => destination_address[:country],
+                                                       :state => destination_address[:state],
+                                                       :zip => destination_address[:zipcode])
+
+          boxes = convert_pseudo_to_simple_packages(box_slot_data)
+          box_cost = boxes.any? ? boxes.sum { |box| box.cost } : 0
+
+          shipment_packages = packages(boxes)
+
+          if shipment_packages.empty?
+            rates_result ={}
+          else
+            rates_result = retrieve_rates(origin, destination, shipment_packages)
+          end
+
+          return nil if rates_result.kind_of?(Spree::ShippingError)
+          return nil if rates_result.empty?
+
+          rate = rates_result[self.class.description]
+          return nil unless rate
+
+          rate = rate * multiplier
+
+          # Add Adult Signature fee
+          rate = rate.to_f + 162 if contains_alcohol
+          rate = rate.to_f + (Spree::ActiveShipping::Config[:handling_fee].to_f || 0.0) + box_cost * 100
+
+          # divide by 100 since active_shipping rates are expressed as cents
+          newRate = (rate/100.0).ceil - 0.01
+          newRate = 0 if newRate < 0
+
+          return newRate
+        end
+
+
         # Divide by 100 since active_shipping rates
         # are received in cents
         def final_rate_adjustment rate
@@ -222,6 +265,17 @@ module Spree
           end
 
           packages
+        end
+
+        def convert_pseudo_to_simple_packages(pseudo_data)
+          simple_boxes = []
+
+          pseudo_data.each do |box_slot_id, weight_quantities|
+            box_slot = Spree::BoxSlot.find_by(id: box_slot_id)
+            simple_boxes.concat box_slot.get_dimensional_boxes(weight_quantities)
+          end
+
+          simple_boxes
         end
 
         def boxes_cache_key(package)
