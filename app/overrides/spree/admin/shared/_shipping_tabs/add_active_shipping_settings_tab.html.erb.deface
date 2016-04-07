@@ -1,0 +1,5 @@
+<!-- insert_bottom "[data-hook='admin_settings_shipping_tabs']" -->
+
+<% if can?(:display, Spree::ShippingMethod) %>
+    <%= settings_tab_item 'Active Shipping', edit_admin_active_shipping_settings_path %>
+<% end %>
