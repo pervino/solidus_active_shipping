@@ -79,7 +79,9 @@ module Spree
 
           destination = ::ActiveShipping::Location.new(:country => destination_address[:country],
                                                        :state => destination_address[:state],
-                                                       :zip => destination_address[:zipcode])
+                                                       :zip => destination_address[:zipcode],
+                                                       :address1 => destination_address[:address1],
+                                                       :address1 => destination_address[:address2])
 
           boxes = convert_pseudo_to_simple_packages(box_slot_data)
           box_cost = boxes.any? ? boxes.sum { |box| box.cost } : 0
@@ -298,7 +300,9 @@ module Spree
           ::ActiveShipping::Location.new(:country => address.country.iso,
                                          :state => fetch_best_state_from_address(address),
                                          :city => address.city,
-                                         :zip => address.zipcode)
+                                         :zip => address.zipcode,
+                                         :address1 => address.address1,
+                                         :address2 => address.address2)
         end
 
         def retrieve_boxes_from_cache package
