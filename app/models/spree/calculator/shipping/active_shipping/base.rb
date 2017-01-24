@@ -81,7 +81,7 @@ module Spree
                                                        :state => destination_address[:state],
                                                        :zip => destination_address[:zipcode],
                                                        :address1 => destination_address[:address1],
-                                                       :address1 => destination_address[:address2])
+                                                       :address2 => destination_address[:address2])
 
           boxes = convert_pseudo_to_simple_packages(box_slot_data)
           box_cost = boxes.any? ? boxes.sum { |box| box.cost } : 0
