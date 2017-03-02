@@ -1,0 +1,46 @@
+<% content_for :page_actions do %>
+  <li><%= link_to_with_icon('icon-plus', Spree.t(:new_package), new_admin_product_product_package_url(@product), :id => 'new_product_package_link', :class => 'button') %></li>
+<% end %>
+
+<% content_for :head do %>
+  <%= javascript_include_tag 'admin/product_packages/index.js' %>
+<% end %>
+
+<%# This partial was remove in solidus 1.2 but that is also when Spree.solidus_version was added %>
+<%= render :partial => 'spree/admin/shared/product_sub_menu' if !Spree.respond_to?(:solidus_version) %>
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Product Packages' } %>
+
+<div id="product_packages" data-hook></div>
+
+<% unless @product.reload.product_packages.any? %>
+  <div class="no-objects-found">
+    <%= Spree.t(:no_packages_found) %>.
+  </div>
+<% else %>
+  <table class="index">
+    <thead data-hook="option_header">
+      <tr data-hook="product_packages_header">
+        <th><%= Spree.t(:length) %></th>
+        <th><%= Spree.t(:width) %></th>
+        <th><%= Spree.t(:height) %></th>
+        <th><%= Spree.t(:weight) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody id="product_packages" data-hook>
+      <% @product.product_packages.each do |package| %>
+        <tr id="<%= dom_id(package) %>" data-hook="product_package_row">
+          <td><%= package.length %></td>
+          <td><%= package.width %></td>
+          <td><%= package.height %></td>
+          <td><%= package.weight %></td>
+          <td class="actions">
+            <%= link_to_with_icon 'icon-edit', Spree.t(:edit), edit_admin_product_product_package_url(@product, package), :class => "edit", :no_text => true, :data => {:action => 'edit'} %>
+            &nbsp;
+            <%= link_to_delete package, { :url => admin_product_product_package_url(@product, package), :no_text => true }%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

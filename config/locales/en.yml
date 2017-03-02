@@ -63,25 +63,23 @@ en:
     small_packets_air: "Canada Post Small Packets Air"
     parcel_surface: "Canada Post Parcel Surface"
     small_packets_surface: "Canada Post Small Packets Surface"
+  canada_post_pws:
+    regular: Regular Parcel
+    expedited: Expedited Parcel
+    xpresspost: Xpresspost
+    xpresspost_certified: "Xpresspost Certified"
+    priority: Priority
+    expedited_usa: Expedited Parcel USA
+    priority_worldwide_parcel_usa: Priority Worldwide parcel USA
+    xpresspost_usa: Xpresspost USA
+    international_parcel_surface: International Parcel Surface
+    priority_worldwide_parcel: "Priority Worldwide parcel INT'L"
+    xpresspost_international: Xpresspost International
   shipping_error: "Shipping Error"
   spree:
-    slots: "Slots"
-    new_box: "New Box"
-    new_box_slot: "New Box Slot"
-    editing_box_slot: "Editing Box Slot"
-    editing_box: "Editing Box"
-    box_slot: "Box slot"
-    box_slots: "Box slots"
-    no_boxes_found: "No boxes were found"
-    no_box_slots_found: "No box slots were found"
-    back_to_boxes_list: "Back to Boxes list"
-    back_to_box_slots_list: "Back to Box Slots list"
-    listing_box_slots: "Listing Box Slots"
-    listing_boxes: "Listing Boxes"
-    label: "Label"
-    packages: "Packages"
-    package_slots: "Package Slots"
-    add_package_slots: "Add Package Slots"
+    product_packages: "Product Packages"
+    add_product_packages: "Add Product Packages"
+    length: "Length"
     new_package: "New Package"
     edit_package: "Edit Package"
     active_shipping_settings: "Active Shipping Settings"
@@ -90,7 +88,18 @@ en:
     usps_settings: "USPS Settings"
     canada_post_settings: "Canada Post Settings"
     origin_address_settings: "Origin Address Settings"
-    unit_length: "Length (%{unit})"
-    unit_width: "Width (%{unit})"
-    unit_height: "Height (%{unit})"
-    unit_weight: "Weight (%{unit})"
+    ups_login: 'UPS Login'
+    ups_password: 'UPS Password'
+    ups_key: 'UPS Key'
+    shipper_number: 'Shipper Number'
+    fedex_login: 'Fedex Login'
+    fedex_password: 'Fedex Password'
+    fedex_account: 'Fedex Account'
+    fedex_key: 'Fedex Key'
+    usps_login: 'USPS Login'
+    canada_post_login: 'Canada Post Login'
+    units: 'Units'
+    unit_multiplier: 'Unit Multiplier'
+    default_weight: 'Default Weight'
+    handling_fee: 'Handling Fee'
+    max_weight_per_package: 'Max Weight Per Package'

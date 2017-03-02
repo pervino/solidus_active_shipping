@@ -11,11 +11,12 @@ module Spree
         def compute_package(package)
           order = package.order
           stock_location = package.stock_location
+          max_weight = get_max_weight(package)
 
           origin = build_location(stock_location)
           destination = build_location(order.ship_address)
 
-          rates_result = retrieve_rates_from_cache(package, origin, destination)
+          rates_result = retrieve_rates_from_cache(package, origin, destination, max_weight)
 
           return nil if rates_result.kind_of?(Spree::ShippingError)
           return nil if rates_result.empty?
@@ -41,7 +42,7 @@ module Spree
 
         def retrieve_rates(origin, destination, shipment_packages)
           begin
-            response = carrier.find_rates(origin, destination, shipment_packages, rate_options)
+            response = carrier.find_rates(origin, destination, shipment_packages)
             # turn this beastly array into a nice little hash
             service_code_prefix_key = response.params.keys.first == 'IntlRateV2Response' ? :international : :domestic
             rates = response.rates.collect do |rate|
@@ -51,8 +52,7 @@ module Spree
             rate_hash = Hash[*rates.flatten]
             return rate_hash
           rescue ::ActiveShipping::Error => e
-
-            if e.class == ::ActiveShipping::ResponseError && e.response.is_a?(::ActiveShipping::Response)
+            if [::ActiveShipping::ResponseError].include?(e.class) && e.response.is_a?(::ActiveShipping::Response)
               params = e.response.params
               if params.has_key?("Response") && params["Response"].has_key?("Error") && params["Response"]["Error"].has_key?("ErrorDescription")
                 message = params["Response"]["Error"]["ErrorDescription"]
@@ -77,16 +77,6 @@ module Spree
         # weight limit in ounces or zero (if there is no limit)
         def max_weight_for_country(country)
           1120  # 70 lbs
-        end
-
-        def rate_options
-          if Spree::ActiveShipping::Config[:usps_commercial_plus]
-            { commercial_plus: true }
-          elsif Spree::ActiveShipping::Config[:usps_commercial_base]
-            { commercial_base: true }
-          else
-            {}
-          end
         end
       end
     end
