@@ -1,3 +1,5 @@
+require_dependency 'spree/box_slot/packer'
+
 module Spree
   class BoxSlot < Spree::Base
     has_many :boxes
