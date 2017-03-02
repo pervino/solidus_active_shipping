@@ -4,6 +4,7 @@
 # Digest::MD5 is used for cache_key generation.
 require 'digest/md5'
 require_dependency 'spree/calculator'
+require_dependency 'spree/shipping_error'
 
 module Spree
   module Calculator::Shipping
