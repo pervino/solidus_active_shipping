@@ -71,7 +71,7 @@ module Spree
         end
 
 
-        def compute_pseudo(box_slot_data, origin_address, destination_address, contains_alcohol = false, multiplier = 1)
+        def compute_pseudo(box_slot_data, origin_address, destination_address, contains_alcohol = false)
 
           origin = ::ActiveShipping::Location.new(:country => origin_address[:country],
                                                   :state => origin_address[:state],
@@ -85,7 +85,6 @@ module Spree
                                                        :address2 => destination_address[:address2])
 
           boxes = convert_pseudo_to_simple_packages(box_slot_data)
-          box_cost = boxes.any? ? boxes.sum { |box| box.cost } : 0
 
           shipment_packages = packages(boxes)
 
@@ -101,15 +100,17 @@ module Spree
           rate = rates_result[self.class.description]
           return nil unless rate
 
-          rate = rate * multiplier
+          rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?
 
-          # Add Adult Signature fee
+
+          handling_cost = Spree::ActiveShipping::Config[:handling_fee].to_f || 0.0
+          box_cost = boxes.sum { |box| box.cost * 100 } || 0
+
+          rate = rate.to_f + handling_cost + box_cost
           rate = rate.to_f + 162 if contains_alcohol
-          rate = rate.to_f + (Spree::ActiveShipping::Config[:handling_fee].to_f || 0.0) + box_cost * 100
 
-          # divide by 100 since active_shipping rates are expressed as cents
-          newRate = (rate/100.0).ceil - 0.01
-          newRate = 0 if newRate < 0
+          rate = final_rate_adjustment(rate)
+          rate = 0 if rate < 0
 
           return newRate
         end
