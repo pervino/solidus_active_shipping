@@ -109,7 +109,7 @@ module Spree
           rate = final_rate_adjustment(rate)
           rate = 0 if rate < 0
 
-          return newRate
+          return rate
         end
 
 
