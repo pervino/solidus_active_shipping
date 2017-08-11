@@ -313,12 +313,14 @@ module Spree
         def retrieve_rates_from_cache boxes, origin, destination
           previous = Rails.cache.fetch(rates_cache_key(boxes, origin, destination))
 
-          if previous.nil? || previous.empty?
+          if previous.nil?
             shipment_packages = packages(boxes)
             if shipment_packages.empty?
               {}
             else
-              Rails.cache.write(rates_cache_key(boxes, origin, destination), retrieve_rates(origin, destination, shipment_packages))
+              rates = retrieve_rates(origin, destination, shipment_packages)
+              Rails.cache.write(rates_cache_key(boxes, origin, destination), rates)
+              rates
             end
           else
             previous
