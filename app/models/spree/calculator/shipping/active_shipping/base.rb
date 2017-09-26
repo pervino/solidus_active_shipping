@@ -42,7 +42,7 @@ module Spree
           stock_location = package.stock_location
 
           origin = build_location(stock_location)
-          destination = build_location(order.ship_address)
+          destination = build_location(package.shipment.address)
 
           boxes = retrieve_boxes_from_cache(package)
 
