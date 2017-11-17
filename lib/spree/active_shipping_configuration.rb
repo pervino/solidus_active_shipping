@@ -29,6 +29,4 @@ class Spree::ActiveShippingConfiguration < Spree::Preferences::Configuration
   preference :max_weight_per_package, :integer, :default => 0 # 0 means no limit
 
   preference :test_mode, :boolean, :default => false
-
-  binding.pry
 end
