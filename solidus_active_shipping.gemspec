@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'solidus_core', ['> 1.0', '<3']
   s.add_dependency 'solidus_backend', ['> 1.0', '<3']
   s.add_dependency 'solidus_api', ['> 1.0', '<3']
-  s.add_dependency 'active_shipping', '~> 1.8.0'
+  s.add_dependency 'active_shipping', '~> 1.8'
   s.add_development_dependency 'pry'
   s.add_development_dependency 'webmock'
   s.add_development_dependency 'simplecov'
