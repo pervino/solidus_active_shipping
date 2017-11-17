@@ -1,5 +1,4 @@
 class Spree::ActiveShippingConfiguration < Spree::Preferences::Configuration
-  p = Spree::Preference
 
   # preference :ups_login, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/ups_login').value
   # preference :ups_password, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/ups_password').value
