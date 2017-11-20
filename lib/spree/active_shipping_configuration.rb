@@ -31,6 +31,8 @@ class Spree::ActiveShippingConfiguration < Spree::Preferences::Configuration
 
   preference :canada_post_login, :string, :default => ENV['CANADA_POST_LOGIN']
 
+  binding.pry
+
   # The default values correspond to the official test credentials
   # Source : https://www.canadapost.ca/cpo/mc/business/productsservices/developers/services/fundamentals.jsf
   preference :canada_post_pws_userid, :string, :default => "6e93d53968881714"
