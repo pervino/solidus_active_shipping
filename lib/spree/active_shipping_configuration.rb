@@ -1,17 +1,17 @@
 class Spree::ActiveShippingConfiguration < Spree::Preferences::Configuration
-  # preference :ups_login, :string, :default => ENV['UPS_LOGIN']
-  # preference :ups_password, :string, :default => ENV['UPS_PASSWORD']
-  # preference :ups_key, :string, :default => ENV['UPS_KEY']
-  # preference :shipper_number, :string, :default => ENV['SHIPPER_NUMBER']
+  preference :ups_login, :string, :default => 'ups_login'
+  preference :ups_password, :string, :default => 'ups_password'
+  preference :ups_key, :string, :default => 'ups_ke'
+  preference :shipper_number, :string, :default => 'shipper_number'
 
-  # preference :fedex_login, :string, :default => ENV['FEDEX_LOGIN']
-  # preference :fedex_password, :string, :default => ENV['FEDEX_PASSWORD']
-  # preference :fedex_account, :string, :default => ENV['FEDEX_ACCOUNT']
-  # preference :fedex_key, :string, :default => ENV['FEDEX_KEY']
+  preference :fedex_login, :string, :default => 'fedex_login'
+  preference :fedex_password, :string, :default => 'fedex_password'
+  preference :fedex_account, :string, :default => 'fedex_account'
+  preference :fedex_key, :string, :default => 'fedex_key'
 
-  # preference :usps_login, :string, :default => ENV['USPS_LOGIN']
+  preference :usps_login, :string, :default => 'usps_login'
 
-  # preference :canada_post_login, :string, :default => ENV['CANADA_POST_LOGIN']
+  preference :canada_post_login, :string, :default => 'canada_post_login'
 
   # The default values correspond to the official test credentials
   # Source : https://www.canadapost.ca/cpo/mc/business/productsservices/developers/services/fundamentals.jsf
