@@ -1,9 +1,17 @@
 <!-- insert_bottom "[data-hook='admin_shipping_method_form_fields']" -->
 
-<div data-hook="admin_shipping_method_form_name_field" class="alpha six columns">
+<div class="col-5">
   <%= f.field_container :preferred_cost_multiplier do %>
     <%= f.label :preferred_cost_multiplier %><br />
     <%= f.text_field :preferred_cost_multiplier, :class => 'fullwidth' %>
     <%= error_message_on :shipping_method, :preferred_cost_multiplier %>
+  <% end %>
+</div>
+
+<div class="col-5">
+  <%= f.field_container :preferred_delivery_days do %>
+    <%= f.label :preferred_delivery_days %><br />
+    <%= f.text_field :preferred_delivery_days, :class => 'fullwidth' %>
+    <%= error_message_on :shipping_method, :preferred_delivery_days %>
   <% end %>
 </div>
