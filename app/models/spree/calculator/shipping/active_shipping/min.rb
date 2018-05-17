@@ -66,6 +66,7 @@ module Spree
           # hack for free standard shipping promo on 12 or more wine items
           promotionables = package.contents.select { |item| (item.variant.product.contains_alcohol && item.variant.product.volume != nil && item.variant.product.volume >= 750) || (item.variant.sku == 'MAR-SAC' && item.variant.product.volume != nil && item.variant.product.volume >= 750) }
           if promotionables.count >= 12
+            puts 'testytest'
             rate = 0
           end
 
