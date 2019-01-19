@@ -9,12 +9,15 @@ module Spree
 
       def self.business_days_estimate placed_on, days
         holidays = [
-            Date.new(2015, 5, 25),
-            Date.new(2015, 9, 7),
-            Date.new(2015, 11, 26),
-            Date.new(2015, 12, 25),
-            Date.new(2015, 12, 31),
-            Date.new(2016, 1, 1)]
+          Date.new(2019, 5, 27),
+          Date.new(2019, 7, 4),
+          Date.new(2019, 9, 2),
+          Date.new(2019, 11, 28),
+          Date.new(2019, 12, 24),
+          Date.new(2019, 12, 25),
+          Date.new(2019, 12, 31),
+          Date.new(2020, 1, 1)
+        ]
 
         daysLeft = days
         receiveDay = placed_on
