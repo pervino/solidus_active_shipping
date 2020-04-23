@@ -101,6 +101,7 @@ module Spree
           return nil unless rate
 
           rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?
+          binding.pry
 
 
           handling_cost = Spree::ActiveShipping::Config[:handling_fee].to_f || 0.0
@@ -188,7 +189,6 @@ module Spree
               [CGI.unescapeHTML(service_name), rate.price]
             end
             rate_hash = Hash[*rates.flatten]
-            binding.pry
             return rate_hash
           rescue ::ActiveShipping::Error => e
 
