@@ -59,7 +59,7 @@ module Spree
 
           binding.pry
 
-          if self.class.check_free
+          if self.class.respond_to?(:check_free)
             self.class.check_free(package.shipment, rate)
           end
 
