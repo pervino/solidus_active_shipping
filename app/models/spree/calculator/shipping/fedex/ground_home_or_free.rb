@@ -9,7 +9,7 @@ module Spree
         end
         def self.check_free(shipment, rate)
           binding.pry
-          total = hipment.order.total.to_i
+          total = shipment.order.total.to_i
           subtract_shipping_cost = total - rate
           if subtract_shipping_cost > 19.99
             rate = 0
