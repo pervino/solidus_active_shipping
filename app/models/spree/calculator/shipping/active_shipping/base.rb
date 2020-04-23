@@ -58,12 +58,12 @@ module Spree
           return nil unless rate
 
           binding.pry
+          rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?
 
           if self.class.respond_to?(:check_free)
             self.class.check_free(package.shipment, rate)
           end
 
-          rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?
 
           handling_cost = Spree::ActiveShipping::Config[:handling_fee].to_f || 0.0
           box_cost = boxes.sum { |box| box.cost * 100 } || 0
