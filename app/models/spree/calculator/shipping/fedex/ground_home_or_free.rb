@@ -14,6 +14,7 @@ module Spree
             return rate
           else
             return rate
+          end
         end
       end
     end

@@ -56,11 +56,12 @@ module Spree
 
           rate = rates_result[self.class.description]
           return nil unless rate
-          
+
           binding.pry
 
           if self.class.check_free
             self.class.check_free(package.shipment, rate)
+          end
 
           rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?
 
