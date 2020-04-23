@@ -98,10 +98,11 @@ module Spree
           return nil if rates_result.empty?
 
           rate = rates_result[self.class.description]
+          binding.pry
+
           return nil unless rate
 
           rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?
-          binding.pry
 
 
           handling_cost = Spree::ActiveShipping::Config[:handling_fee].to_f || 0.0
