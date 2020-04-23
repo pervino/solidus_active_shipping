@@ -7,6 +7,14 @@ module Spree
         def self.description
           I18n.t("fedex.ground_home_delivery")
         end
+        def self.check_free(shipment, rate)
+          binding.pry
+          if shipment.cost > 19.99
+            rate = 0
+            return rate
+          else
+            return rate
+        end
       end
     end
   end

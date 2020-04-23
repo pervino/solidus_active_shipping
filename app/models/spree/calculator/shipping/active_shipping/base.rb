@@ -50,13 +50,17 @@ module Spree
 
           rates_result = retrieve_rates_from_cache(boxes, origin, destination)
 
-          binding.pry
 
           return nil if rates_result.kind_of?(Spree::ShippingError)
           return nil if rates_result.empty?
 
           rate = rates_result[self.class.description]
           return nil unless rate
+          
+          binding.pry
+
+          if self.class.check_free
+            self.class.check_free(package.shipment, rate)
 
           rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?
 
@@ -74,6 +78,7 @@ module Spree
 
 
         def compute_pseudo(box_slot_data, origin_address, destination_address, contains_alcohol = false)
+          binding.pry
 
           origin = ::ActiveShipping::Location.new(:country => origin_address[:country],
                                                   :state => origin_address[:state],
