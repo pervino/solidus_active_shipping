@@ -50,6 +50,8 @@ module Spree
 
           rates_result = retrieve_rates_from_cache(boxes, origin, destination)
 
+          binding.pry
+
           return nil if rates_result.kind_of?(Spree::ShippingError)
           return nil if rates_result.empty?
 
@@ -98,7 +100,6 @@ module Spree
           return nil if rates_result.empty?
 
           rate = rates_result[self.class.description]
-          binding.pry
 
           return nil unless rate
 
