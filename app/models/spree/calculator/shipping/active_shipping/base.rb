@@ -180,7 +180,6 @@ module Spree
         end
 
         def retrieve_rates(origin, destination, shipment_packages)
-          binding.pry
           begin
             response = carrier.find_rates(origin, destination, shipment_packages)
             # turn this beastly array into a nice little hash
@@ -189,6 +188,7 @@ module Spree
               [CGI.unescapeHTML(service_name), rate.price]
             end
             rate_hash = Hash[*rates.flatten]
+            binding.pry
             return rate_hash
           rescue ::ActiveShipping::Error => e
 
