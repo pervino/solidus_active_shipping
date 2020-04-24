@@ -17,16 +17,16 @@ module Spree
         end
 
         def self.check_free(shipment, rate, free_ship_threshold)
-          total = shipment.order.item_total.to_i
+          total = shipment.order.item_total.to_f
           return rate if free_ship_threshold === nil
-          if total > free_ship_threshold
+          if total > free_ship_threshold.to_f
             rate = 0
             return rate
           else
             return rate
           end
         end
-        
+
       end
     end
   end
