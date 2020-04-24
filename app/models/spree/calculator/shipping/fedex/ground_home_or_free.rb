@@ -7,11 +7,11 @@ module Spree
         def self.description
           I18n.t("fedex.ground_home_delivery")
         end
-        def self.check_free(shipment, rate)
+        def self.check_free(shipment, rate, free_ship_threshold)
           total = shipment.order.total.to_i
           subtract_shipping_cost = total - (rate.to_i / 100)
           binding.pry
-          if subtract_shipping_cost > 19.99
+          if subtract_shipping_cost > free_ship_threshold
             rate = 0
             return rate
           else

@@ -66,7 +66,7 @@ module Spree
           rate = rate.to_f + handling_cost + box_cost + additional_cost
 
           if self.class.respond_to?(:check_free)
-            rate = self.class.check_free(package.shipment, rate)
+            rate = self.class.check_free(package.shipment, rate, self.calculable.free_ship_threshold)
             binding.pry
           end
 
@@ -78,7 +78,6 @@ module Spree
 
 
         def compute_pseudo(box_slot_data, origin_address, destination_address, contains_alcohol = false)
-          binding.pry
 
           origin = ::ActiveShipping::Location.new(:country => origin_address[:country],
                                                   :state => origin_address[:state],
