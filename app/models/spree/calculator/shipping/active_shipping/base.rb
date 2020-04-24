@@ -37,6 +37,17 @@ module Spree
           false
         end
 
+        def check_free(shipment, rate, free_ship_threshold)
+          total = shipment.order.item_total.to_f
+          return rate if free_ship_threshold === nil
+          if total > free_ship_threshold.to_f
+            rate = 0
+            return rate
+          else
+            return rate
+          end
+        end
+
         def compute_package(package)
           order = package.order
           stock_location = package.stock_location
@@ -54,12 +65,6 @@ module Spree
           return nil if rates_result.empty?
 
           rate = rates_result[self.class.description]
-          
-          # for custom calculations we use "service" to pick the rate because the description wont match any pulled rates
-          if rate == nil && self.class.respond_to?(:service)
-            rate = rates_result[self.class.service]
-            rate = self.class.check_free(package.shipment, rate, self.calculable.free_ship_threshold)
-          end
 
           return nil unless rate
 
@@ -71,10 +76,8 @@ module Spree
 
           rate = rate.to_f + handling_cost + box_cost + additional_cost
 
-          if self.class.respond_to?(:check_free)
-            rate = self.class.check_free(package.shipment, rate, self.calculable.free_ship_threshold)
-          end
-
+          rate = check_free(package.shipment, rate, self.calculable.free_ship_threshold)
+          
           rate = final_rate_adjustment(rate)
           rate = 0 if rate < 0
 
