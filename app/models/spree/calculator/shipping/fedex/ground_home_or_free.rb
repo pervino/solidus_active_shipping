@@ -15,7 +15,6 @@ module Spree
         end
         def self.check_free(shipment, rate, free_ship_threshold)
           total = shipment.order.item_total.to_i
-          binding.pry
           return rate if free_ship_threshold === nil
           if total > free_ship_threshold
             rate = 0
