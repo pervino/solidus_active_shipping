@@ -11,6 +11,7 @@ module Spree
           total = shipment.order.total.to_i
           subtract_shipping_cost = total - (rate.to_i / 100)
           binding.pry
+          return rate if free_ship_threshold === nil
           if subtract_shipping_cost > free_ship_threshold
             rate = 0
             return rate
