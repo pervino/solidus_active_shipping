@@ -55,7 +55,7 @@ module Spree
           return nil if rates_result.empty?
 
           rate = rates_result[self.class.description]
-
+          rate = self.class.descriptions.collect { |d| rates_result[d] }.compact.min if self.class.descriptions
           return nil unless rate
 
           rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?

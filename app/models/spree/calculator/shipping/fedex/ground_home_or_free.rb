@@ -7,6 +7,9 @@ module Spree
         def self.description
           "FedEx Ground Home - or - Free"
         end
+        def self.descriptions
+          [I18n.t("fedex.ground_home_delivery")]
+        end
         def self.check_free(shipment, rate, free_ship_threshold)
           total = shipment.order.total.to_i
           subtract_shipping_cost = total - (rate.to_i / 100)
