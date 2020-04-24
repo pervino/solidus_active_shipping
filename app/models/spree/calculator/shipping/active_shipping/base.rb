@@ -56,8 +56,9 @@ module Spree
           rate = rates_result[self.class.description]
           
           # for custom calculations we use "service" to pick the rate because the description wont match any pulled rates
-          if rate == nil && self.class.respond_to?(:service)
+          if self.class.respond_to?(:check_free)
             rate = rates_result[self.class.service]
+            rate = self.class.check_free(package.shipment, rate, self.calculable.free_ship_threshold)
           end
 
           return nil unless rate
@@ -69,10 +70,6 @@ module Spree
           additional_cost = self.additional_rate_hooks.sum { |hook| order.send hook } || 0
 
           rate = rate.to_f + handling_cost + box_cost + additional_cost
-
-          if self.class.respond_to?(:check_free)
-            rate = self.class.check_free(package.shipment, rate, self.calculable.free_ship_threshold)
-          end
 
           rate = final_rate_adjustment(rate)
           rate = 0 if rate < 0
