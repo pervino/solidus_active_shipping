@@ -37,6 +37,15 @@ module Spree
           false
         end
 
+        def adjust_for_free_shipping(shipment, rate, free_ship_threshold)
+          total = shipment.order.item_total.to_f
+          if free_ship_threshold === nil || total < free_ship_threshold.to_f
+            return rate
+         else
+            return 0
+          end
+        end
+
         def compute_package(package)
           order = package.order
           stock_location = package.stock_location
@@ -64,6 +73,8 @@ module Spree
 
           rate = rate.to_f + handling_cost + box_cost + additional_cost
 
+          rate = adjust_for_free_shipping(package.shipment, rate, self.calculable.free_ship_threshold)
+          
           rate = final_rate_adjustment(rate)
           rate = 0 if rate < 0
 
