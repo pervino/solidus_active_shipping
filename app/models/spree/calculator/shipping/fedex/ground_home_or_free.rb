@@ -5,7 +5,7 @@ module Spree
     module Fedex
       class GroundHomeOrFree < Spree::Calculator::Shipping::Fedex::Base
         def self.description
-          I18n.t("fedex.ground_home_delivery")
+          "FedEx Ground Home - or - Free"
         end
         def self.check_free(shipment, rate, free_ship_threshold)
           total = shipment.order.total.to_i

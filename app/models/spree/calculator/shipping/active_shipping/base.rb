@@ -55,6 +55,7 @@ module Spree
           return nil if rates_result.empty?
 
           rate = rates_result[self.class.description]
+
           return nil unless rate
 
           rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?
@@ -67,7 +68,6 @@ module Spree
 
           if self.class.respond_to?(:check_free)
             rate = self.class.check_free(package.shipment, rate, self.calculable.free_ship_threshold)
-            binding.pry
           end
 
           rate = final_rate_adjustment(rate)
