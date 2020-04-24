@@ -55,7 +55,12 @@ module Spree
           return nil if rates_result.empty?
 
           rate = rates_result[self.class.description]
-          rate = self.class.descriptions.collect { |d| rates_result[d] }.compact.min if self.class.descriptions
+          
+          # for custom calculations we use "service" to pick the rate because the description wont match any pulled rates
+          if rate == nil && self.class.respond_to?(:service)
+            rate = rates_result[self.class.service]
+          end
+
           return nil unless rate
 
           rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?

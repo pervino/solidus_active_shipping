@@ -5,10 +5,13 @@ module Spree
     module Fedex
       class GroundHomeOrFree < Spree::Calculator::Shipping::Fedex::Base
         def self.description
+          # typically this is whats used to pull the rate AND show the display name in the drop down
+          # but with custom named services like this one, we will use this as the label in the drop down
+          # and the below service method to pick the associated rate
           "FedEx Ground Home - or - Free"
         end
-        def self.descriptions
-          [I18n.t("fedex.ground_home_delivery")]
+        def self.service
+          I18n.t("fedex.ground_home_delivery")
         end
         def self.check_free(shipment, rate, free_ship_threshold)
           total = shipment.order.total.to_i
