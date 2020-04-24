@@ -50,7 +50,6 @@ module Spree
 
           rates_result = retrieve_rates_from_cache(boxes, origin, destination)
 
-
           return nil if rates_result.kind_of?(Spree::ShippingError)
           return nil if rates_result.empty?
 
@@ -109,7 +108,6 @@ module Spree
           return nil if rates_result.empty?
 
           rate = rates_result[self.class.description]
-
           return nil unless rate
 
           rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?
