@@ -4,7 +4,9 @@
 <%= Spree.t(:active_shipping_settings) %>
 <% end %>
 
-<%= form_tag admin_active_shipping_settings_path, :method => :put  do |form| %>
+<%
+=begin%>
+ <%= form_tag admin_active_shipping_settings_path, :method => :put  do |form| %>
 <div id="preferences" data-hook>
   <fieldset class="general no-border-top">
     <div class="row">
@@ -103,4 +105,6 @@
 
               </fieldset>
             </div>
-            <% end %>
+            <% end %> 
+<%
+=end%>
