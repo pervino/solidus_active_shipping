@@ -1,0 +1,42 @@
+<%= render :partial => 'spree/admin/shared/shipping_tabs' %>
+
+<% content_for :page_title do %>
+    <%= Spree.t(:listing_box_slots) %>
+<% end %>
+
+<% content_for :page_actions do %>
+    <%= button_link_to Spree.t(:new_box_slot), new_admin_box_slot_url, {:class => "btn-success", :icon => 'add', :id => 'new_box_slot_link'} %>
+<% end %>
+
+<% unless @box_slots.any? %>
+    <div class="no-objects-found">
+      <%= Spree.t(:no_box_slots_found) %>.
+    </div>
+<% else %>
+    <table class="table">
+      <colgroup>
+        <col style="width: 50%">
+        <col style="width: 35%">
+        <col style="width: 15%">
+      </colgroup>
+      <thead data-hook="option_header">
+        <tr data-hook="product_packages_header">
+          <th><%= Spree.t(:label) %></th>
+          <th><%= Spree.t(:default) %></th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+      <tbody id="box_slots" data-hook>
+        <% @box_slots.each do |box_slot| %>
+            <tr id="<%= dom_id(box_slot) %>" data-hook="box_slot_row">
+              <td><%= box_slot.label %></td>
+              <td><%= box_slot.default %></td>
+              <td class="actions actions-2 text-right">
+                <%= link_to_edit(box_slot, :no_text => true) %>
+                <%= link_to_delete(box_slot, :no_text => true) %>
+              </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>

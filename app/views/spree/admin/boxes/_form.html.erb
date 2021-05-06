@@ -1,0 +1,48 @@
+<div data-hook="admin_box_form_fields">
+  <div class="row">
+    <div class="alpha columns four">
+      <div data-hook="length" class="field">
+        <%= f.label :box_slot_id %><br>
+        <%= f.select :box_slot_id, Spree::BoxSlot.all.collect { |p| [p.label, p.id] }, {include_blank: false}, class: "select2 fullwidth" %>
+      </div>
+    </div>
+    <div class="columns four">
+      <div data-hook="height" class="field">
+        <%= f.label Spree.t(:slots) %><br>
+        <%= f.number_field :slots, class: "form-control" %>
+      </div>
+    </div>
+    <div class="omega columns four">
+      <div data-hook="length" class="field">
+        <%= f.label :cost %><br>
+        <%= f.number_field :cost, step: :any, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="alpha three columns">
+      <div data-hook="length" class="field">
+        <%= f.label Spree.t(:unit_weight, unit: 'oz') %><br>
+        <%= f.number_field :weight, step: :any, class: "form-control"  %>
+      </div>
+    </div>
+    <div class="three columns">
+      <div data-hook="length" class="field">
+        <%= f.label Spree.t(:unit_height, unit: 'in') %><br>
+        <%= f.number_field :height, step: :any, class: "form-control"  %>
+      </div>
+    </div>
+    <div class="three columns">
+      <div data-hook="length" class="field">
+        <%= f.label Spree.t(:unit_width, unit: 'in') %><br>
+        <%= f.number_field :width, step: :any, class: "form-control"  %>
+      </div>
+    </div>
+    <div class="three columns">
+      <div data-hook="length" class="field">
+        <%= f.label Spree.t(:unit_length, unit: 'in') %><br>
+        <%= f.number_field :length, step: :any, class: "form-control"  %>
+      </div>
+    </div>
+  </div>
+</div>
