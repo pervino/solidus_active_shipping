@@ -10,6 +10,7 @@ end
 gem 'sqlite3'
 gem 'pg'
 gem 'mysql2'
+gem 'active_shipping', branch: 'master'
 
 group :development, :test do
   gem "pry-rails"

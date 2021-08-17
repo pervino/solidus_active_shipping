@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'solidus_core', ['> 1.0', '<3']
   s.add_dependency 'solidus_backend', ['> 1.0', '<3']
   s.add_dependency 'solidus_api', ['> 1.0', '<3']
-  s.add_dependency 'active_shipping', '~> 1.8'
   s.add_development_dependency 'pry'
   s.add_development_dependency 'webmock'
   s.add_development_dependency 'simplecov'
@@ -31,5 +30,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'vcr'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'capybara-screenshot'
-  s.add_dependency 'carmen', '~> 1.0.0'
+  s.add_dependency 'carmen', '~> 1.1.0'
 end
