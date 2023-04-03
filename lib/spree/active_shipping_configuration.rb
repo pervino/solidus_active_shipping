@@ -1,19 +1,17 @@
 class Spree::ActiveShippingConfiguration < Spree::Preferences::Configuration
-  p = Spree::Preference
+  preference :ups_login, :string, :default => 'ups_login'
+  preference :ups_password, :string, :default => 'ups_password'
+  preference :ups_key, :string, :default => 'ups_ke'
+  preference :shipper_number, :string, :default => 'shipper_number'
 
-  preference :ups_login, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/ups_login').value
-  preference :ups_password, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/ups_password').value
-  preference :ups_key, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/ups_key').value
-  preference :shipper_number, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/shipper_number').value
+  preference :fedex_login, :string, :default => 'fedex_login'
+  preference :fedex_password, :string, :default => 'fedex_password'
+  preference :fedex_account, :string, :default => 'fedex_account'
+  preference :fedex_key, :string, :default => 'fedex_key'
 
-  preference :fedex_login, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/fedex_login').value
-  preference :fedex_password, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/fedex_password').value
-  preference :fedex_account, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/fedex_account').value
-  preference :fedex_key, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/fedex_key').value
+  preference :usps_login, :string, :default => 'usps_login'
 
-  preference :usps_login, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/usps_login').value
-
-  preference :canada_post_login, :string, :default => p.find_by(key: 'spree/active_shipping_configuration/canada_post_login').value
+  preference :canada_post_login, :string, :default => 'canada_post_login'
 
   # The default values correspond to the official test credentials
   # Source : https://www.canadapost.ca/cpo/mc/business/productsservices/developers/services/fundamentals.jsf
@@ -29,6 +27,4 @@ class Spree::ActiveShippingConfiguration < Spree::Preferences::Configuration
   preference :max_weight_per_package, :integer, :default => 0 # 0 means no limit
 
   preference :test_mode, :boolean, :default => false
-
-  binding.pry
 end
