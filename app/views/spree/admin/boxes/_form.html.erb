@@ -8,7 +8,7 @@
     </div>
     <div class="columns four">
       <div data-hook="height" class="field">
-        <%= f.label Spree.t(:slots) %><br>
+        <%= f.label I18n.t("spree.slots") %><br>
         <%= f.number_field :slots, class: "form-control" %>
       </div>
     </div>
@@ -22,25 +22,25 @@
   <div class="row">
     <div class="alpha three columns">
       <div data-hook="length" class="field">
-        <%= f.label Spree.t(:unit_weight, unit: 'oz') %><br>
+        <%= f.label I18n.t("spree.unit_weight", unit: 'oz') %><br>
         <%= f.number_field :weight, step: :any, class: "form-control"  %>
       </div>
     </div>
     <div class="three columns">
       <div data-hook="length" class="field">
-        <%= f.label Spree.t(:unit_height, unit: 'in') %><br>
+        <%= f.label I18n.t("spree.unit_height", unit: 'in') %><br>
         <%= f.number_field :height, step: :any, class: "form-control"  %>
       </div>
     </div>
     <div class="three columns">
       <div data-hook="length" class="field">
-        <%= f.label Spree.t(:unit_width, unit: 'in') %><br>
+        <%= f.label I18n.t("spree.unit_width", unit: 'in') %><br>
         <%= f.number_field :width, step: :any, class: "form-control"  %>
       </div>
     </div>
     <div class="three columns">
       <div data-hook="length" class="field">
-        <%= f.label Spree.t(:unit_length, unit: 'in') %><br>
+        <%= f.label I18n.t("spree.unit_length", unit: 'in') %><br>
         <%= f.number_field :length, step: :any, class: "form-control"  %>
       </div>
     </div>

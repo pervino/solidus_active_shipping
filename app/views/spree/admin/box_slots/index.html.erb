@@ -1,16 +1,16 @@
 <%= render :partial => 'spree/admin/shared/shipping_tabs' %>
 
 <% content_for :page_title do %>
-    <%= Spree.t(:listing_box_slots) %>
+    <%= I18n.t("spree.listing_box_slots") %>
 <% end %>
 
 <% content_for :page_actions do %>
-    <%= button_link_to Spree.t(:new_box_slot), new_admin_box_slot_url, {:class => "btn-success", :icon => 'add', :id => 'new_box_slot_link'} %>
+    <%= button_link_to I18n.t("spree.new_box_slot"), new_admin_box_slot_url, {:class => "btn-success", :icon => 'add', :id => 'new_box_slot_link'} %>
 <% end %>
 
 <% unless @box_slots.any? %>
     <div class="no-objects-found">
-      <%= Spree.t(:no_box_slots_found) %>.
+      <%= I18n.t("spree.no_box_slots_found") %>.
     </div>
 <% else %>
     <table class="table">
@@ -21,8 +21,8 @@
       </colgroup>
       <thead data-hook="option_header">
         <tr data-hook="product_packages_header">
-          <th><%= Spree.t(:label) %></th>
-          <th><%= Spree.t(:default) %></th>
+          <th><%= I18n.t("spree.label") %></th>
+          <th><%= I18n.t("spree.default") %></th>
           <th class="actions"></th>
         </tr>
       </thead>
