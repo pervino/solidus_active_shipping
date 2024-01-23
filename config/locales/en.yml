@@ -103,8 +103,10 @@ en:
     default_weight: 'Default Weight'
     handling_fee: 'Handling Fee'
     max_weight_per_package: 'Max Weight Per Package'
+    back_to_boxes_list: "Back to Boxes List"
     back_to_box_slots_list: "Back to Box Slots List"
     box_slot: "Box Slot"
+    editing_box: "Editing Box"
     editing_box_slot: "Editing Box Slot"
     label: "Label"
     listing_box_slots: "Listing Box Slots"
