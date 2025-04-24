@@ -8,19 +8,6 @@
 <div id="preferences" data-hook>
   <fieldset class="general no-border-top">
     <div class="row">
-      <div class="alpha six columns">
-        <fieldset class="security no-border-bottom">
-          <legend align="center"><%= I18n.t("spree.ups_settings")%></legend>
-          <% @preferences_UPS.each do |key|
-            type = @config.preference_type(key) %>
-            <div class="field">
-              <%= label_tag(key, I18n.t("spree.#{key}") + ': ') + tag(:br) if type != :boolean %>
-              <%= preference_field_tag(key, @config[key], :type => type) %>
-              <%= label_tag(key, I18n.t("spree.#{key}")) + tag(:br) if type == :boolean %>
-            </div>
-            <% end %>
-          </fieldset>
-        </div>
         <div class="omega six columns">
           <fieldset class="currency no-border-bottom">
             <legend align="center"><%= I18n.t("spree.fedex_settings")%></legend>

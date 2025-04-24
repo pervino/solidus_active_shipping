@@ -5,8 +5,6 @@ describe "Checkout", type: :feature do
   include_context 'checkout setup'
   include CheckoutHelper
 
-  include_context 'UPS setup'
-
   context "with valid shipping address", :vcr do
     let!(:valid_address) { create :address,
       name: 'John Doe',
