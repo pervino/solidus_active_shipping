@@ -12,7 +12,5 @@ class CreateSpreeBoxes < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_index :spree_boxes, :box_slot_id
   end
 end
