@@ -9,8 +9,7 @@ describe "Checkout", type: :feature do
 
   context "with valid shipping address", :vcr do
     let!(:valid_address) { create :address,
-      firstname: 'John',
-      lastname: 'Doe',
+      name: 'John Doe',
       company: 'Company',
       address1: '4157 Lawnview Ave',
       city: 'Dallas',
