@@ -1,4 +1,4 @@
-class CreateSpreeBoxSlots < ActiveRecord::Migration
+class CreateSpreeBoxSlots < ActiveRecord::Migration[7.0]
   def change
     create_table :spree_box_slots do |t|
       t.string :label

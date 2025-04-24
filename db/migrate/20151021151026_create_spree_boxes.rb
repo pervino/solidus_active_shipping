@@ -1,4 +1,4 @@
-class CreateSpreeBoxes < ActiveRecord::Migration
+class CreateSpreeBoxes < ActiveRecord::Migration[7.0]
   def change
     create_table :spree_boxes do |t|
       t.references :box_slot
