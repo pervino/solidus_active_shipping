@@ -34,7 +34,7 @@ $ bundle
 Rate quotes from carriers
 ---
 
-So far, this gem supports getting quotes from Canada Post, and FedEx. In general, you will need a developer account to get rates. Please contact the shipping vendor that you wish to use about generating a developer account.
+So far, this gem supports getting quotes from FedEx. In general, you will need a developer account to get rates. Please contact the shipping vendor that you wish to use about generating a developer account.
 
 Once you have an account, you can go to the active shipping settings admin configuration screen to set the right fields. You need to set all of the Origin Address fields and the fields for the carrier you wish to use. To set the settings through a config file, you can assign values to the settings like so:
 

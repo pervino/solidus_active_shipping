@@ -1,80 +1,50 @@
 <%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
-<%= I18n.t("spree.active_shipping_settings") %>
+  <%= I18n.t("spree.active_shipping_settings") %>
 <% end %>
 
 <%= form_tag admin_active_shipping_settings_path, :method => :put  do |form| %>
-<div id="preferences" data-hook>
-  <fieldset class="general no-border-top">
-    <div class="row">
+  <div id="preferences" data-hook>
+    <fieldset class="general no-border-top">
+      <div class="row">
         <div class="omega six columns">
           <fieldset class="currency no-border-bottom">
             <legend align="center"><%= I18n.t("spree.fedex_settings")%></legend>
             <% @preferences_FedEx.each do |key|
               type = @config.preference_type(key) %>
-              <div class="field">
-                <%= label_tag(key, I18n.t("spree.#{key}") + ': ') + tag(:br) if type != :boolean %>
-                <%= preference_field_tag(key, @config[key], :type => type) %>
-                <%= label_tag(key, I18n.t("spree.#{key}")) + tag(:br) if type == :boolean %>
-              </div>
-              <% end %>
-            </fieldset>
-          </div>
+            <div class="field">
+              <%= label_tag(key, I18n.t("spree.#{key}") + ': ') + tag(:br) if type != :boolean %>
+              <%= preference_field_tag(key, @config[key], :type => type) %>
+              <%= label_tag(key, I18n.t("spree.#{key}")) + tag(:br) if type == :boolean %>
+            </div>
+          <% end %>
+          </fieldset>
         </div>
+      </div>
 
-        <div class="row">
-            <div class="omega six columns">
-              <fieldset class="currency no-border-bottom">
-                <legend align="center"><%= I18n.t("spree.canada_post_settings")%></legend>
-                <% @preferences_CanadaPost.each do |key|
-                  type = @config.preference_type(key) %>
-                  <div class="field">
-                    <%= label_tag(key, I18n.t("spree.#{key}") + ': ') + tag(:br) if type != :boolean %>
-                    <%= preference_field_tag(key, @config[key], :type => type) %>
-                    <%= label_tag(key, I18n.t("spree.#{key}")) + tag(:br) if type == :boolean %>
-                  </div>
-                  <% end %>
-                </fieldset>
-              </div>
+      <div class="row">
+        <div class="alpha six columns">
+          <fieldset class="currency no-border-bottom">
+            <legend align="center"><%= I18n.t("spree.general_settings")%></legend>
+            <% @preferences_GeneralSettings.each do |key|
+              type = @config.preference_type(key) %>
+            <div class="field">
+              <%= label_tag(key, I18n.t("spree.#{key}") + ': ') + tag(:br) if type != :boolean %>
+              <%= preference_field_tag(key, @config[key], :type => type) %>
+              <%= label_tag(key, I18n.t("spree.#{key}")) + tag(:br) if type == :boolean %>
             </div>
+          <% end %>
+          </fieldset>
+        </div>
+      </div>
 
-            <div class="row">
-              <div class="omega six columns">
-                <fieldset class="currency no-border-bottom">
-                  <legend align="center"><%= I18n.t("spree.canada_post_settings")%></legend>
-                  <% @preferences_CanadaPostPws.each do |key|
-                    type = @config.preference_type(key) %>
-                    <div class="field">
-                      <%= label_tag(key, I18n.t("spree.#{key}") + ': ') + tag(:br) if type != :boolean %>
-                      <%= preference_field_tag(key, @config[key], :type => type) %>
-                      <%= label_tag(key, I18n.t("spree.#{key}")) + tag(:br) if type == :boolean %>
-                    </div>
-                    <% end %>
-                  </fieldset>
-                </div>
+      <div class="form-buttons filter-actions actions" data-hook="buttons">
+        <%= button I18n.t("spree.update"), 'icon-refresh' %>
+        <span class="or"><%= I18n.t("spree.or") %></span>
+        <%= link_to_with_icon 'icon-remove', I18n.t("spree.cancel"), edit_admin_active_shipping_settings_url, :class => 'button' %>
+      </div>
 
-                <div class="alpha six columns">
-                  <fieldset class="currency no-border-bottom">
-                    <legend align="center"><%= I18n.t("spree.general_settings")%></legend>
-                    <% @preferences_GeneralSettings.each do |key|
-                      type = @config.preference_type(key) %>
-                      <div class="field">
-                        <%= label_tag(key, I18n.t("spree.#{key}") + ': ') + tag(:br) if type != :boolean %>
-                        <%= preference_field_tag(key, @config[key], :type => type) %>
-                        <%= label_tag(key, I18n.t("spree.#{key}")) + tag(:br) if type == :boolean %>
-                      </div>
-                      <% end %>
-                    </fieldset>
-                  </div>
-                </div>
-
-                <div class="form-buttons filter-actions actions" data-hook="buttons">
-                  <%= button I18n.t("spree.update"), 'icon-refresh' %>
-                  <span class="or"><%= I18n.t("spree.or") %></span>
-                  <%= link_to_with_icon 'icon-remove', I18n.t("spree.cancel"), edit_admin_active_shipping_settings_url, :class => 'button' %>
-                </div>
-
-              </fieldset>
-            </div>
-            <% end %>
+    </fieldset>
+  </div>
+<% end %>

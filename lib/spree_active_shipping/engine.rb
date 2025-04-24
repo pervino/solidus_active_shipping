@@ -16,9 +16,6 @@ module SpreeActiveShippingExtension
       Dir.glob(File.join(File.dirname(__FILE__), "../../app/**/*_decorator*.rb")) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
-
-      # Fix Canada Post "Ready to ship" package
-      ActiveShipping::CanadaPost.send(:include, Spree::ActiveShipping::CanadaPostOverride)
     end
 
     config.autoload_paths += %W(#{config.root}/lib)
