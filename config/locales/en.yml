@@ -35,25 +35,6 @@ en:
     worldwide_expedited: "UPS Worldwide Expedited"
     standard: "UPS Standard"
     express: "UPS Express"
-  usps:
-    express_mail: "USPS Priority Mail Express"
-    express_mail_international: "USPS Priority Mail Express International"
-    first_class_mail_international: "USPS First-Class Mail International Letter"
-    first_class_mail_international_large_envelope: "USPS First-Class Mail International Large Envelope"
-    first_class_package_international: "USPS First-Class Package International Service"
-    first_class_mail_parcel: "USPS First-Class Mail Parcel"
-    media_mail: "USPS Media Mail Parcel"
-    standard_post: "USPS Standard Post"
-    priority_mail: "USPS Priority Mail"
-    priority_mail_small_flat_rate_box: "USPS Priority Mail Small Flat Rate Box"
-    priority_mail_medium_flat_rate_box: "USPS Priority Mail Medium Flat Rate Box"
-    priority_mail_large_flat_rate_box: "USPS Priority Mail Large Flat Rate Box"
-    priority_mail_flat_rate_envelope: "USPS Priority Mail Flat Rate Envelope"
-    priority_mail_international: "USPS Priority Mail International"
-    priority_mail_international_small_flat_rate_box: "USPS Priority Mail International Small Flat Rate Box"
-    priority_mail_international_medium_flat_rate_box: "USPS Priority Mail International Medium Flat Rate Box"
-    priority_mail_international_large_flat_rate_box: "USPS Priority Mail International Large Flat Rate Box"
-    global_express_guaranteed: "USPS Global Express Guaranteed (GXG)"
   canada_post:
     regular: "Canada Post Regular"
     expedited: "Canada Post Expedited"
@@ -85,7 +66,6 @@ en:
     active_shipping_settings: "Active Shipping Settings"
     ups_settings: "UPS Settings"
     fedex_settings: "FedEx Settings"
-    usps_settings: "USPS Settings"
     canada_post_settings: "Canada Post Settings"
     origin_address_settings: "Origin Address Settings"
     ups_login: 'UPS Login'
@@ -96,7 +76,6 @@ en:
     fedex_password: 'Fedex Password'
     fedex_account: 'Fedex Account'
     fedex_key: 'Fedex Key'
-    usps_login: 'USPS Login'
     canada_post_login: 'Canada Post Login'
     units: 'Units'
     unit_multiplier: 'Unit Multiplier'

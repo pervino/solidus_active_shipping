@@ -9,8 +9,6 @@ class Spree::ActiveShippingConfiguration < Spree::Preferences::Configuration
   preference :fedex_account, :string, :default => 'fedex_account'
   preference :fedex_key, :string, :default => 'fedex_key'
 
-  preference :usps_login, :string, :default => 'usps_login'
-
   preference :canada_post_login, :string, :default => 'canada_post_login'
 
   # The default values correspond to the official test credentials

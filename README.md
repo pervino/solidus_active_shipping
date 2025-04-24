@@ -34,7 +34,7 @@ $ bundle
 Rate quotes from carriers
 ---
 
-So far, this gem supports getting quotes from UPS, USPS, Canada Post, and FedEx. In general, you will need a developer account to get rates. Please contact the shipping vendor that you wish to use about generating a developer account.
+So far, this gem supports getting quotes from UPS, Canada Post, and FedEx. In general, you will need a developer account to get rates. Please contact the shipping vendor that you wish to use about generating a developer account.
 
 Once you have an account, you can go to the active shipping settings admin configuration screen to set the right fields. You need to set all of the Origin Address fields and the fields for the carrier you wish to use. To set the settings through a config file, you can assign values to the settings like so:
 
@@ -42,7 +42,6 @@ Once you have an account, you can go to the active shipping settings admin confi
 Spree::ActiveShipping::Config[:ups_login]
 Spree::ActiveShipping::Config[:ups_password]
 Spree::ActiveShipping::Config[:ups_key]
-Spree::ActiveShipping::Config[:usps_login]
 ```
 
 **NOTE:** When setting up FedEx credentials, `:fedex_login` is the "Meter Number" that FedEx supplies you with.

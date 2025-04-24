@@ -37,19 +37,6 @@
         </div>
 
         <div class="row">
-          <div class="alpha six columns">
-            <fieldset class="security no-border-bottom">
-              <legend align="center"><%= I18n.t("spree.usps_settings")%></legend>
-              <% @preferences_USPS.each do |key|
-                type = @config.preference_type(key) %>
-                <div class="field">
-                  <%= label_tag(key, I18n.t("spree.#{key}") + ': ') + tag(:br) if type != :boolean %>
-                  <%= preference_field_tag(key, @config[key], :type => type) %>
-                  <%= label_tag(key, I18n.t("spree.#{key}")) + tag(:br) if type == :boolean %>
-                </div>
-                <% end %>
-              </fieldset>
-            </div>
             <div class="omega six columns">
               <fieldset class="currency no-border-bottom">
                 <legend align="center"><%= I18n.t("spree.canada_post_settings")%></legend>
