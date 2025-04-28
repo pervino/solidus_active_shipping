@@ -3,6 +3,8 @@ module Spree
     extend ActiveSupport::Concern
 
     included do
+      include Spree::Preferences::Persistable
+
       preference :delivery_days, :integer
       preference :cost_multiplier, :decimal, default: 1
 
@@ -37,5 +39,7 @@ module Spree
         return self.class.business_days_estimate placed_on, self.preferred_delivery_days
       end
     end
+
+    Spree::ShippingMethod.include self
   end
 end

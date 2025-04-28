@@ -1,3 +1,7 @@
-Spree::Variant.class_eval do
-  delegate :has_product_packages?, to: :product
+module Spree
+  module VariantDecorator
+    delegate :has_product_packages?, to: :product
+
+    Spree::Variant.prepend self
+  end
 end
