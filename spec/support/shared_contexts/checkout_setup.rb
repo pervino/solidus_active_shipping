@@ -3,7 +3,7 @@ shared_context 'checkout setup' do
   let!(:shipping_method) do
     create(
       :shipping_method,
-      calculator: Spree::Calculator::Shipping::Fedex::Ground.new
+      calculator: Spree::Calculator::Shipping::Fedex::GroundHomeDelivery.new
     )
   end
   let!(:payment_method) { create(:check_payment_method) }

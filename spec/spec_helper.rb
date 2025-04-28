@@ -6,12 +6,14 @@ require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require 'rspec/rails'
 require 'webmock/rspec'
 require 'factory_bot'
+require 'rspec/mocks'
 require 'ffaker'
 require 'database_cleaner'
 require 'vcr'
 require 'pry'
 # Run any available migration
-ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
+#ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
+ActiveRecord::MigrationContext.new("../dummy/db/migrate/", ActiveRecord::SchemaMigration).migrate
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

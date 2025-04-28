@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry'
   s.add_development_dependency 'webmock'
   s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'rspec-rails', '~> 3.5'
+  s.add_development_dependency 'rspec-rails', '~> 7.0.0'
   s.add_development_dependency 'rspec-activemodel-mocks'
   s.add_development_dependency 'database_cleaner', '~> 1.2'
   s.add_development_dependency 'capybara', '~> 2.7'

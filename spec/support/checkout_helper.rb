@@ -1,7 +1,6 @@
 module CheckoutHelper
   def fill_in_address(address)
-    fill_in "First Name", with: address.firstname
-    fill_in "Last Name", with: address.lastname
+    fill_in "Name", with: address.name
     fill_in "Street Address", with: address.address1
     fill_in "City", with: address.city
     select address.country.name, from: "Country"

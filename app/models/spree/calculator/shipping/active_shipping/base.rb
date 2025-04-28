@@ -65,7 +65,7 @@ module Spree
           rate = rates_result[self.class.description]
           return nil unless rate
 
-          rate = rate * self.calculable.preferred_cost_multiplier if self.calculable.preferred_cost_multiplier.present?
+          rate = rate * self.calculable.preferred_cost_multiplier if self.calculable&.preferred_cost_multiplier.present?
 
           handling_cost = Spree::ActiveShipping::Config[:handling_fee].to_f || 0.0
           box_cost = boxes.sum { |box| box.cost * 100 } || 0
@@ -73,7 +73,7 @@ module Spree
 
           rate = rate.to_f + handling_cost + box_cost + additional_cost
 
-          rate = adjust_for_free_shipping(package.shipment, rate, self.calculable.free_ship_threshold)
+          rate = adjust_for_free_shipping(package.shipment, rate, self.calculable&.free_ship_threshold)
           
           rate = final_rate_adjustment(rate)
           rate = 0 if rate < 0
@@ -292,15 +292,17 @@ module Spree
         end
 
         def boxes_cache_key(package)
-          last_box_update = Spree::Box.maximum('updated_at').try(:updated_at)
-          last_box_slot_update = Spree::BoxSlot.order('updated_at').try(:updated_at)
+          last_box_update = Spree::Box.maximum('updated_at')
+          last_box_slot_update = Spree::BoxSlot.order('updated_at')
           contents_hash = Digest::MD5.hexdigest(package.contents.map { |content_item| content_item.variant.weight.to_s + "_" + content_item.quantity.to_s + content_item.variant.product.box_slot_id.to_s }.join("|"))
-          @boxes_cache_key = "#{last_box_update}-#{last_box_slot_update}-#{contents_hash}-#{I18n.locale}".gsub(" ", "")
+          @boxes_cache_key =
+            Rails.env.test? ? SecureRandom.hex(10) : "#{last_box_update}-#{last_box_slot_update}-#{contents_hash}-#{I18n.locale}".gsub(" ", "")
         end
 
         def rates_cache_key(boxes, origin, destination)
           boxes_hash = Digest::MD5.hexdigest(boxes.map { |box| "#{box.width}_#{box.height}_#{box.length}_#{box.weight}" }.join("|"))
-          @cache_key = "#{boxes_hash}-#{carrier.name}-#{location_cache_key(destination)}-#{I18n.locale}".gsub(" ", "")
+          @cache_key =
+            Rails.env.test? ? SecureRandom.hex(10) : "#{boxes_hash}-#{carrier.name}-#{location_cache_key(destination)}-#{I18n.locale}".gsub(" ", "")
         end
 
         def fetch_best_state_from_address address

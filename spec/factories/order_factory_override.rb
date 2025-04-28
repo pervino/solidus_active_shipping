@@ -40,7 +40,7 @@ FactoryBot.define do
 
       order.shipments.reload
 
-      order.update!
+      order.recalculate
     end
   end
 end

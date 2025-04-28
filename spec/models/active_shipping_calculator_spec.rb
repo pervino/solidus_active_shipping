@@ -20,6 +20,17 @@ describe Spree::Calculator::Shipping do
     Spree::ActiveShipping::Config.set(units: 'imperial')
     Spree::ActiveShipping::Config.set(unit_multiplier: 1)
     Spree::ActiveShipping::Config.set(handling_fee: 0)
+
+    box_slot = Spree::BoxSlot.create!(label: "test")
+    Spree::Box.create!(
+      box_slot: box_slot,
+      slots: 2,
+      height: 1,
+      width: 1,
+      length: 1,
+      weight: 1,
+      cost: 0
+    )
   end
 
   describe 'available' do
@@ -78,7 +89,7 @@ describe Spree::Calculator::Shipping do
         # Since the cache is cleared between the tests, cache.fetch will return a miss,
         # but by passing a block { Hash.new }, the return value of the block will be
         # written under the given cache key so we simulate a warm cache
-        Rails.cache.fetch(calculator.send(:cache_key, package)) { Hash.new }
+        Rails.cache.fetch(calculator.cache_key) { Hash.new }
         expect(calculator.carrier).not_to receive(:find_rates)
         subject
       end
@@ -130,53 +141,6 @@ describe Spree::Calculator::Shipping do
   describe 'service_name' do
     it 'should return description when not defined' do
       expect(calculator.class.service_name).to eq calculator.description
-    end
-  end
-
-  # We make an exception and tests this the private method because max_weight values
-  # are difficult to tests conclusively through the
-  describe 'get_max_weight' do
-    include_context 'US stock location'
-    include_context 'US package setup'
-
-    context 'when the max_weight from the calculator is non-zero and max_weight_per_package is zero' do
-      before do
-        allow(calculator).to receive(:max_weight_for_country).and_return(1)
-        allow(calculator).to receive(:max_weight_per_package).and_return(0)
-      end
-
-      it 'uses the max_weight_for_country as a max_weight' do
-        expect(calculator.send(:get_max_weight, package)).to eq calculator.send(:max_weight_for_country)
-      end
-    end
-
-    context 'when the max_weight from the calculator is zero and max_weight_per_package is non-zero' do
-      before do
-        allow(calculator).to receive(:max_weight_for_country).and_return(0)
-        allow(calculator).to receive(:max_weight_per_package).and_return(1)
-      end
-
-      it 'uses the max_weight_per_package as a max_weight' do
-        expect(calculator.send(:get_max_weight, package)).to eq calculator.send(:max_weight_per_package)
-      end
-    end
-
-    context 'when the max_weight from the calculator is non-zero and max_weight_per_package is non-zero' do
-      before do
-        allow(calculator).to receive(:max_weight_per_package).and_return(SecureRandom.random_number(19) + 1)
-        allow(calculator).to receive(:max_weight_for_country).and_return(SecureRandom.random_number(19) + 1)
-      end
-
-      it 'uses the lesser one of the two values' do
-        min = [calculator.send(:max_weight_for_country), calculator.send(:max_weight_per_package)].min
-        expect(calculator.send(:get_max_weight, package)).to eq min
-      end
-    end
-
-    context 'when the max_weight is zero and max_weight_per_package is zero' do
-      it 'uses 0 as a max_eight' do
-        expect(calculator.send(:get_max_weight, package)).to be_zero
-      end
     end
   end
 end

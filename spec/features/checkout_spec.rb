@@ -2,8 +2,22 @@ require 'spec_helper'
 
 describe "Checkout", type: :feature do
   include_context 'US stock location'
+  include_context 'FedEx setup'
   include_context 'checkout setup'
   include CheckoutHelper
+
+  before do
+    box_slot = Spree::BoxSlot.create!(label: "test")
+    Spree::Box.create!(
+      box_slot: box_slot,
+      slots: 2,
+      height: 1,
+      width: 1,
+      length: 1,
+      weight: 1,
+      cost: 10
+    )
+  end
 
   context "with valid shipping address", :vcr do
     let!(:valid_address) { create :address,
