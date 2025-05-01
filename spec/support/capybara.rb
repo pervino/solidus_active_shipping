@@ -6,9 +6,17 @@ require 'capybara-screenshot/rspec'
 RSpec.configure do |config|
   config.include Rack::Test::Methods, type: :requests
 
-  Capybara.javascript_driver = :poltergeist
-  Capybara.register_driver(:poltergeist) do |app|
-    Capybara::Poltergeist::Driver.new app, js_errors: true, timeout: 60
+  chrome_options = Selenium::WebDriver::Chrome::Options.new
+
+  Capybara.javascript_driver = :chrome_headless
+  Capybara.register_driver :chrome_headless do |app|
+    chrome_options.args << "--window-size=1440,900"
+    chrome_options.args << "--headless"
+    chrome_options.args << "--disable-gpu"
+
+    Capybara::Selenium::Driver.new app,
+      browser: :chrome,
+      options: chrome_options
   end
 
   # rspec-rails 3 will no longer automatically infer an example group's spec type

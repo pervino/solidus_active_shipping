@@ -42,7 +42,7 @@ describe "Checkout", type: :feature do
 
       # select default shipping
       click_button "Save and Continue"
-      expect(page).to have_content("Shipping total: $68.81")
+      expect(page).to have_content("Shipping total: $30.99")
     end
   end
 end

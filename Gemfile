@@ -20,6 +20,10 @@ gem 'pg'
 gem "factory_bot_rails"
 gem "pry-rails"
 gem "ffaker"
+gem "puma"
+gem "capybara", "~> 3.0"
+gem "selenium-webdriver"
+gem "coffee-rails"
 
 gemspec
 

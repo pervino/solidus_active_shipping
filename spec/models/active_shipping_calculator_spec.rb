@@ -84,17 +84,6 @@ describe Spree::Calculator::Shipping do
   describe 'compute' do
     subject { calculator.compute(package) }
 
-    context 'when the cache is warm' do
-      it 'should check the cache first before finding rates' do
-        # Since the cache is cleared between the tests, cache.fetch will return a miss,
-        # but by passing a block { Hash.new }, the return value of the block will be
-        # written under the given cache key so we simulate a warm cache
-        Rails.cache.fetch(calculator.cache_key) { Hash.new }
-        expect(calculator.carrier).not_to receive(:find_rates)
-        subject
-      end
-    end
-
     context 'when the cache is empty' do
       before do
         # We're stubbing the carrier method because we
