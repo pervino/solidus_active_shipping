@@ -6,10 +6,9 @@ module Spree
       class Min < Spree::Calculator::Shipping::ActiveShipping::Min
         def carrier
           carrier_details = {
-            :key => Spree::ActiveShipping::Config[:fedex_key],
-            :password => Spree::ActiveShipping::Config[:fedex_password],
+            :client_id => Spree::ActiveShipping::Config[:fedex_client_id],
+            :client_secret => Spree::ActiveShipping::Config[:fedex_client_secret],
             :account => Spree::ActiveShipping::Config[:fedex_account],
-            :login => Spree::ActiveShipping::Config[:fedex_login],
             :test => Spree::ActiveShipping::Config[:test_mode]
           }
 

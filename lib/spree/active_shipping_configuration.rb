@@ -4,10 +4,9 @@ class Spree::ActiveShippingConfiguration < Spree::Preferences::Configuration
   preference :ups_key, :string, :default => 'ups_ke'
   preference :shipper_number, :string, :default => 'shipper_number'
 
-  preference :fedex_login, :string, :default => 'fedex_login'
-  preference :fedex_password, :string, :default => 'fedex_password'
+  preference :fedex_client_id, :string, :default => 'fedex_client_id'
+  preference :fedex_client_secret, :string, :default => 'fedex_client_secret'
   preference :fedex_account, :string, :default => 'fedex_account'
-  preference :fedex_key, :string, :default => 'fedex_key'
 
   preference :usps_login, :string, :default => 'usps_login'
 

@@ -45,7 +45,7 @@ Spree::ActiveShipping::Config[:ups_key]
 Spree::ActiveShipping::Config[:usps_login]
 ```
 
-**NOTE:** When setting up FedEx credentials, `:fedex_login` is the "Meter Number" that FedEx supplies you with.
+**NOTE:** FedEx integration uses the FedEx REST API (OAuth 2.0). Credentials required: `:fedex_client_id`, `:fedex_client_secret`, `:fedex_account`. The legacy SOAP Web Services fields (`:fedex_login`/meter number, `:fedex_password`, `:fedex_key`) are no longer used.
 
 It is important to note how this wrapper matches the calculators to the services available from the carrier API's, by default the base calculator matches the service name to the calculator class and returns the rate, this magic happens as follows:
 
